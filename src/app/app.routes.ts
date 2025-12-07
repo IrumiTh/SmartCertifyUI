@@ -9,10 +9,25 @@ export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent},
 
-    {path: 'about', component: AboutComponent},
-    {path: 'contact-us', component: ContactUsComponent},
+    {
+        path: 'about', 
+        loadComponent: () => import('./pages/about/about.component')
+        .then(m => m.AboutComponent)
+    },
+    {
+        path: 'contact-us', 
+        loadComponent: () => import('./pages/contact-us/contact-us.component')
+        .then(m => m.ContactUsComponent)
+    },
 
-    {path: 'data-bindings', component: DataBindingsComponent},
-    {path: 'data-bindings-latest', component: DataBindingsLatestComponent},
+    {   path: 'data-bindings', 
+        loadComponent: () => import('./components/data-bindings/data-bindings.component')
+        .then(m => m.DataBindingsComponent)
+    },
+    {
+        path: 'data-bindings-latest', 
+        loadComponent: () => import('./components/data-bindings-latest/data-bindings-latest.component')
+        .then(m => m.DataBindingsLatestComponent)
+    },
     {path: '**', redirectTo: 'home' }
 ];
