@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-us',
+  standalone: true,
   imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './contact-us.component.html',
-  styleUrl: './contact-us.component.css'
+  styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
   contactForm!: FormGroup;
+  formValidity = signal(false);
   userId=0;
   constructor(
     private fb: FormBuilder
@@ -19,6 +21,12 @@ export class ContactUsComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       message: ['', Validators.required],
+    });
+
+    this.contactForm.statusChanges.subscribe({
+      next: (status) => {
+        this.formValidity.set(status === 'VALID');
+      },
     });
   }
 
