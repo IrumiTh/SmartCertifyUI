@@ -4,6 +4,7 @@ import { DataBindingsComponent } from './components/data-bindings/data-bindings.
 import { DataBindingsLatestComponent } from './components/data-bindings-latest/data-bindings-latest.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { CoursesComponent } from './components/courses/courses.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,6 +29,10 @@ export const routes: Routes = [
         path: 'data-bindings-latest', 
         loadComponent: () => import('./components/data-bindings-latest/data-bindings-latest.component')
         .then(m => m.DataBindingsLatestComponent)
+    },
+    {
+        path: 'courses',
+        component: CoursesComponent,
     },
     {path: '**', redirectTo: 'home' }
 ];
