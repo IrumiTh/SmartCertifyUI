@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../../models/course';
 import { CoursesService } from '../../services/courses.service';
 import { CommonModule } from '@angular/common';
+import { TechFilterComponent } from '../tech-filter/tech-filter.component';
 
 @Component({
   selector: 'app-courses',
-  imports: [CommonModule],
+  imports: [CommonModule, TechFilterComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
